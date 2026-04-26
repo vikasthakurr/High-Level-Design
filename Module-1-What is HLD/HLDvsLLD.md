@@ -4,6 +4,33 @@ In system design, we move from a broad idea to a detailed implementation. Unders
 
 ---
 
+## Visualizing the Difference
+
+### High-Level Design (The Architecture)
+This shows how different systems connect to each other.
+
+```mermaid
+graph LR
+    UserApp[User Mobile App] --> Server[Backend Server]
+    Server --> DB[(Main Database)]
+    Server --> Notifier[Notification Service]
+    Server --> CafeApp[Cafe Dashboard]
+```
+
+### Low-Level Design (The Internal Logic)
+This shows what happens inside one of those boxes (e.g., inside the Notification Service).
+
+```mermaid
+graph TD
+    Start[New Notification Request] --> Check[Is User Online?]
+    Check -- Yes --> Push[Send Push Notification]
+    Check -- No --> Email[Send Email Notification]
+    Push --> Success[Log Success]
+    Email --> Success
+```
+
+---
+
 ## 1. High-Level Design (HLD): The Big Picture
 
 High-Level Design, often called System Architecture, looks at the entire system from a distance. It describes how different parts of the system are connected and how they talk to each other.
